@@ -6,11 +6,19 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:56:41 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/11/10 18:37:24 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/11/10 18:57:56 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "headers.h"
+
+void	ft_end(int status)
+{
+	if (WIFEXITED(status))
+		if (WEXITSTATUS(status) == EXIT_SUCCESS)
+			exit(EXIT_SUCCESS);
+	exit(EXIT_FAILURE);
+}
 
 void	process_one(char **argv, int *end, char **envp)
 {
@@ -80,7 +88,7 @@ void	pipex(char **argv, char **envp)
 	close(end[1]);
 	waitpid(p_one, &status, 0);
 	waitpid(p_two, &status, 0);
-	exit(EXIT_SUCCESS);
+	ft_end(status);
 }
 
 int	main(int argc, char **argv, char **envp)
