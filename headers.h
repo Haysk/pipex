@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:57:20 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/11/09 01:09:11 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/11/10 17:49:20 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@
 
 char	*check_exe(char *file, char **envp);
 char	**str_to_cmd(char *file);
+void	myerror(int error, char *str);
+void	ft_error(int error, char *str);
 
 #endif

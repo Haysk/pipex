@@ -6,7 +6,7 @@
 /*   By: adylewsk <adylewsk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:17:34 by adylewsk          #+#    #+#             */
-/*   Updated: 2021/11/09 01:16:33 by adylewsk         ###   ########.fr       */
+/*   Updated: 2021/11/10 17:59:47 by adylewsk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*file_to_path(char *file, char *path)
 	return (result);
 }
 
-char	**find_paths(char **envp)
+char	**env_to_paths(char **envp)
 {
 	int	i;
 
@@ -65,7 +65,7 @@ char	*relative_path(char *file, char **envp)
 	return (NULL);
 }
 
-char	*check_exe(char *file, char **envp)
+char	*absolute_path(char *file, char **envp)
 {
 	int		i;
 	char	*path;
@@ -73,11 +73,7 @@ char	*check_exe(char *file, char **envp)
 
 	i = 0;
 	path = NULL;
-	if (*file == '/')
-		return (ft_strdup(file));
-	else if (ft_strchr(file, '/'))
-		return (relative_path(file, envp));
-	paths = find_paths(envp);
+	paths = env_to_paths(envp);
 	while (paths && paths[i])
 	{
 		if (path)
@@ -92,5 +88,19 @@ char	*check_exe(char *file, char **envp)
 	}
 	if (paths)
 		ft_freetab(paths);
-	return (path);
+	return (NULL);
+}
+
+char	*check_exe(char *file, char **envp)
+{
+	int		i;
+	char	*path;
+
+	i = 0;
+	path = NULL;
+	if (*file == '/')
+		return (ft_strdup(file));
+	else if (ft_strchr(file, '/'))
+		return (relative_path(file, envp));
+	return (absolute_path(file, envp));
 }

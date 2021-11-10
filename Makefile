@@ -14,7 +14,7 @@ LIBFT = libft/libft.a
 DIR_BUILD = build/
 INC = -I includes -I libft
 
-SRCS = main.c files.c\
+SRCS = main.c files.c error.c\
 
 OBJS = $(addprefix $(DIR_BUILD), $(SRCS:.c=.o))
 
